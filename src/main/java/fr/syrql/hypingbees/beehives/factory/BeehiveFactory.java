@@ -13,6 +13,19 @@ import java.util.LinkedList;
 
 public class BeehiveFactory {
 
+    /**
+     * This function will create a Beehive
+     *
+     * @param id
+     * @param islandUUID
+     * @param time
+     * @param bees
+     * @param buyableLines
+     * @param location
+     * @param rewards
+     * @param boosts
+     */
+
     public Beehive create(String id, String islandUUID, int time, HashMap<Integer, Bees> bees, LinkedList<BuyableLine> buyableLines, Location location, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
         return new Beehive(id, islandUUID, time, bees, buyableLines, location.getWorld().getName(),
                 location.getBlockX(), location.getBlockY(), location.getBlockZ(), rewards, boosts);
