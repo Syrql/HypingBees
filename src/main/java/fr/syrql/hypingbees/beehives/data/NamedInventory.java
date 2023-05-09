@@ -2,6 +2,7 @@ package fr.syrql.hypingbees.beehives.data;
 
 public class NamedInventory {
 
+
     private int duration;
     private String inventoryName;
 

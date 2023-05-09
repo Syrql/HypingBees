@@ -25,17 +25,122 @@ import java.util.*;
 
 public class Beehive implements Serializable {
 
+    /**
+     * Beehive Field id
+     *
+     * @param id the  beehive id.
+     * @return Id of the Beehive.
+     */
+
     private String id;
+
+    /**
+     * Beehive Field islandUUID
+     *
+     * @param islandUUID the beehive island id
+     * @return Id of the island.
+     */
     private String islandUUID;
+
+    /**
+     * Beehive Field time
+     *
+     * @param time the beehive cycle
+     * @return timleft before cycle time
+     */
+
     private int time;
+
+    /**
+     * Beehive Field currentBees
+     *
+     * @param currentBees the bees in beehive
+     * @return hashmap of bees
+     */
+
+
     private HashMap<Integer, Bees> currentBees;
+
+    /**
+     * Beehive Field buyableLines
+     *
+     * @param buyableLines the buyable lines
+     * @return linkedlist of lines
+     */
+
     private LinkedList<BuyableLine> buyableLines;
+
+    /**
+     * Beehive Field world
+     *
+     * @param world the world of the beehive
+     * @return name of the world
+     */
+
     private String world;
+
+    /**
+     * Beehive Field buyableLines
+     *
+     * @param xyz the current location points
+     * @return location points
+     */
+
+
     private int x, y, z;
+
+    /**
+     * Beehive Field rewards
+     *
+     * @param rewards the waiting rewards
+     * @return return rewards
+     */
+
     private Rewards rewards;
+
+    /**
+     * Beehive Field boosts
+     *
+     * @param boost the linkedmap of waiting boosts of the beehive
+     * @return linkedmap of boosts
+     */
+
     private LinkedHashMap<Integer, Boost> boosts;
+
+    /**
+     * Beehive Field currentBoost
+     *
+     * @param currentBoost current boost
+     * @return current boost on beehive
+     */
+
     private Boost currentBoost;
+
+    /**
+     * Beehive Field hologram
+     *
+     * @param buyableLines the current hologram
+     * @return Hologram
+     */
+
     private transient Hologram hologram;
+
+    /**
+     * Another constructor for class Time1
+     *
+     * @param id
+     * @param islandUUID
+     * @param time
+     * @param currentBees
+     * @param buyableLines
+     * @param id
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @param rewards
+     * @param boosts
+     */
 
     public Beehive(String id, String islandUUID, int time, HashMap<Integer, Bees> currentBees, LinkedList<BuyableLine> buyableLines, String world, int x, int y, int z, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
         this.id = id;
@@ -51,105 +156,261 @@ public class Beehive implements Serializable {
         this.boosts = boosts;
     }
 
+    /**
+     * This is a getter which get the id
+     *
+     * @return id - the id to be get
+     */
+
     public String getId() {
         return id;
     }
+
+    /**
+     * This is a setter which set the id
+     *
+     * @param id - the id to be set
+     */
 
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * This is a getter which get the islandUUID
+     *
+     * @return islandUUID - the islandUUID to be get
+     */
+
     public String getIslandUUID() {
         return islandUUID;
     }
+
+    /**
+     * This is a setter which set the islandUUID
+     *
+     * @param islandUUID - the islandUUID to be set
+     */
 
     public void setIslandUUID(String islandUUID) {
         this.islandUUID = islandUUID;
     }
 
+    /**
+     * This is a getter which get the time
+     *
+     * @return time - the time to be get
+     */
+
     public int getTime() {
         return time;
     }
+
+    /**
+     * This is a setter which set the time
+     *
+     * @param time - the time to be set
+     */
 
     public void setTime(int time) {
         this.time = time;
     }
 
+    /**
+     * This is a getter which get the currentBees
+     *
+     * @return currentBees - the currentBees to be get
+     */
+
     public HashMap<Integer, Bees> getCurrentBees() {
         return currentBees;
     }
+
+    /**
+     * This is a setter which set the currentBees
+     *
+     * @param currentBees - the currentBees to be set
+     */
 
     public void setCurrentBees(HashMap<Integer, Bees> currentBees) {
         this.currentBees = currentBees;
     }
 
+    /**
+     * This is a getter which get the buyableLines
+     *
+     * @return buyableLines - the buyableLines to be get
+     */
+
     public LinkedList<BuyableLine> getBuyableLines() {
         return buyableLines;
     }
+
+    /**
+     * This is a setter which set the buyableLines
+     *
+     * @param buyableLines - the buyableLines to be set
+     */
 
     public void setBuyableLines(LinkedList<BuyableLine> buyableLines) {
         this.buyableLines = buyableLines;
     }
 
+    /**
+     * This is a getter which get the rewards
+     *
+     * @return rewards - the rewards to be get
+     */
+
     public Rewards getRewards() {
         return rewards;
     }
+
+    /**
+     * This is a setter which set the rewards
+     *
+     * @param rewards - the rewards to be set
+     */
 
     public void setRewards(Rewards rewards) {
         this.rewards = rewards;
     }
 
+    /**
+     * This is a getter which get the boosts
+     *
+     * @return boosts - the boosts to be get
+     */
+
     public LinkedHashMap<Integer, Boost> getBoosts() {
         return boosts;
     }
+
+    /**
+     * This is a setter which set the boosts
+     *
+     * @param boosts - the boosts to be set
+     */
 
     public void setBoosts(LinkedHashMap<Integer, Boost> boosts) {
         this.boosts = boosts;
     }
 
+    /**
+     * This is a getter which get the currentBoost
+     *
+     * @return currentBoost - the currentBoost to be get
+     */
+
     public Boost getCurrentBoost() {
         return currentBoost;
     }
+
+    /**
+     * This is a setter which setter the islandUUID
+     *
+     * @param currentBoost - the currentBoost to be set
+     */
 
     public void setCurrentBoost(Boost currentBoost) {
         this.currentBoost = currentBoost;
     }
 
+    /**
+     * This is a getter which get the world
+     *
+     * @return world - the world to be get
+     */
+
     public String getWorld() {
         return world;
     }
+
+    /**
+     * This is a setter which set the world
+     *
+     * @param world - the world to be set
+     */
 
     public void setWorld(String world) {
         this.world = world;
     }
 
+    /**
+     * This is a getter which get the x
+     *
+     * @return x - the x to be get
+     */
+
     public int getX() {
         return x;
     }
+
+    /**
+     * This is a setter which set the x
+     *
+     * @return x - the x to be set
+     */
 
     public void setX(int x) {
         this.x = x;
     }
 
+    /**
+     * This is a getter which get the y
+     *
+     * @return y - the y to be get
+     */
+
     public int getY() {
         return y;
     }
+
+    /**
+     * This is a setter which set the y
+     *
+     * @return y - the y to be set
+     */
 
     public void setY(int y) {
         this.y = y;
     }
 
+    /**
+     * This is a getter which get the z
+     *
+     * @return z - the z to be get
+     */
+
     public int getZ() {
         return z;
     }
+
+    /**
+     * This is a setter which get set z
+     *
+     * @return z - the z to be set
+     */
 
     public void setZ(int z) {
         this.z = z;
     }
 
+    /**
+     * This is a getter which get the hologram
+     *
+     * @return hologram - the hologram to be get
+     */
+
     public Hologram getHologram() {
         return hologram;
     }
+
+    /**
+     * This is a setter which set the hologram
+     *
+     * @return hologram - the hologram to be set
+     */
 
     public void setHologram(Hologram hologram) {
         this.hologram = hologram;
@@ -190,59 +451,56 @@ public class Beehive implements Serializable {
                 hypingBees.getBeehiveManager().getInventorySize(),
                 inventoryName);
 
-        Bukkit.getScheduler().runTaskTimerAsynchronously(hypingBees, () -> {
+        for (int i = 0; i < inventory.getSize(); i++) {
+            if (configuration.getExcludedInvisSlots().contains(i)) continue;
 
-            for (int i = 0; i < inventory.getSize(); i++) {
-                if (configuration.getExcludedInvisSlots().contains(i)) continue;
+            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial())
+                    .setName(configuration.getInvisName())
+                    .setCustomModelData(configuration.getInvisData())
+                    .toItemStack());
+        }
 
-                inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial())
-                        .setName(configuration.getInvisName())
-                        .setCustomModelData(configuration.getInvisData())
-                        .toItemStack());
+        for (BuyableLine buyableLine : this.buyableLines) {
+            inventory.setItem(buyableLine.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
+        }
+
+        inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
+
+        this.currentBees.forEach((slot, bees) -> {
+
+            ItemStack itemstack = new ItemBuilder(Material.getMaterial(bees.getMaterial()))
+                    .setName(bees.getName())
+                    .setLore(bees.getLore())
+                    .toItemStack();
+
+            if (bees.isGlow()) {
+                itemstack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 5);
+                ItemMeta itemMeta = itemstack.getItemMeta();
+                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+                itemstack.setItemMeta(itemMeta);
             }
 
-            for (BuyableLine buyableLine : this.buyableLines) {
-                inventory.setItem(buyableLine.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
-            }
+            inventory.setItem(slot, new ItemBuilder(Material.getMaterial(bees.getMaterial()))
+                    .setName(bees.getName())
+                    .setLore(bees.getLore())
+                    .toItemStack());
+        });
 
-            inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
+        for (int i : configuration.getProgressSlots()) {
+            inventory.setItem(i, new ItemBuilder(configuration.getProgressType())
+                    //.setName(this.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState()))
+                    .setName(this.progressBar(this.time, configuration.getCycleTime(), configuration.getProgressState(), '|', ChatColor.GREEN, ChatColor.GRAY))
+                    .setLore(configuration.getProgressLore())
+                    .toItemStack());
+        }
 
-            this.currentBees.forEach((slot, bees) -> {
+        if (this.getBoosts() != null) {
+            this.getBoosts().forEach((integer, boost) -> inventory.setItem(integer, boost.toItemStack()));
+        }
 
-                ItemStack itemstack = new ItemBuilder(Material.getMaterial(bees.getMaterial()))
-                        .setName(bees.getName())
-                        .setLore(bees.getLore())
-                        .toItemStack();
+        inventory.setItem(hypingBees.getBoostManager().getCurrentBoostSlot(),
+                this.currentBoost == null ? new ItemStack(Material.AIR) : this.currentBoost.toItemStack());
 
-                if (bees.isGlow()) {
-                    itemstack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 5);
-                    ItemMeta itemMeta = itemstack.getItemMeta();
-                    itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                    itemstack.setItemMeta(itemMeta);
-                }
-
-                inventory.setItem(slot, new ItemBuilder(Material.getMaterial(bees.getMaterial()))
-                        .setName(bees.getName())
-                        .setLore(bees.getLore())
-                        .toItemStack());
-            });
-
-            for (int i : configuration.getProgressSlots()) {
-                inventory.setItem(i, new ItemBuilder(configuration.getProgressType())
-                        //.setName(this.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState()))
-                        .setName(this.progressBar(this.time, configuration.getCycleTime(), configuration.getProgressState(), '|', ChatColor.GREEN, ChatColor.GRAY))
-                        .setLore(configuration.getProgressLore())
-                        .toItemStack());
-            }
-
-            if (this.getBoosts() != null) {
-                this.getBoosts().forEach((integer, boost) -> inventory.setItem(integer, boost.toItemStack()));
-            }
-
-            inventory.setItem(hypingBees.getBoostManager().getCurrentBoostSlot(),
-                    this.currentBoost == null ? new ItemStack(Material.AIR) : this.currentBoost.toItemStack());
-
-        }, 1L, 20L);
 
         player.openInventory(inventory);
 
