@@ -1,0 +1,151 @@
+bees:
+  1:
+    type: "ouvriere"
+    name: "Ouvrière"
+    material: PAPER
+    glow: true
+    modeldata: 1234567
+    production:
+      rewards:
+        - "HONEYCOMB"
+        - "HONEY_BOTTLE"
+      commands:
+        - "hjobs exp add %player% agriculteur 2"
+  2:
+    type: "reine"
+    name: "Reine"
+    material: PAPER
+    glow: true
+    modeldata: 1234567
+    production:
+      rewards:
+        - "HONEYCOMB"
+      commands:
+        - "hjobs exp add %player% agriculteur 2"
+
+
+beehives:
+  cycle: 10
+  near-block: 15
+  holograms:
+    - "Unités: %bees-size%"
+    - ""
+    - "&6Progression"
+    - "%time%"
+    - ""
+  progress:
+    progress: "&e&l▊"
+    empty: "&7&l▊"
+    material: PAPER
+    name: "%progressbar%"
+    states: 5
+    lore:
+      - "Eheh"
+    slots:
+      - 30
+      - 31
+      - 32
+
+  inventory:
+    default-name: "Ruche"
+    name:
+      1:
+        time: 7
+        name: "Ruche 1"
+      2:
+        time: 5
+        name: "Ruche 2"
+      3:
+        time: 3
+        name: "Ruche 3"
+    size: 54
+    bees-slots:
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+    rewards:
+      slot: 34
+      name: "Récupérer vos récompenses"
+      type: PAPER
+      data: 1234567
+      lore:
+        - "Line 1"
+    buyables:
+      1:
+        slot: 11
+        price: 100
+        placeholder: "%playerpoints_points%"
+        commands:
+          - "points take %player% %prices%"
+      2:
+        slot: 12
+        price: 200
+        placeholder: "%playerpoints_points%"
+        commands:
+          - "points take %player% %prices%"
+      3:
+        slot: 13
+        price: 300
+        placeholder: "%playerpoints_points%"
+        commands:
+          - "points take %player% %prices%"
+      4:
+        slot: 14
+        price: 400
+        placeholder: "%playerpoints_points%"
+        commands:
+          - "points take %player% %prices%"
+    locked-buyables:
+      material: RED_STAINED_GLASS_PANE
+      name: "&cEmplacement verrouillé"
+      lore:
+        - ""
+        - "Vous n'avez pas accès à cet emplacement."
+        - ""
+
+boosts:
+  slots: #slots où les boosts sont déposables (slots vide)
+    - 47
+    - 48
+    - 49
+  currentboost-slot: 51
+  types:
+    normal: #premier boost
+      name: "&dBoost 200%"
+      lore:
+        - ""
+        - "&fCeci est un boost de ruche x2"
+        - ""
+      speed-multiplier: 2 #coefficient multiplicateur du boost (elle va par exemple 2x plus vite sur chaque abeille)
+      duration: 60000 #en s
+      material: PAPER
+      customModelData: 11456
+
+beehive-invis:
+  name: " "
+  material: BLUE_STAINED_GLASS_PANE
+  data: 1234567
+  excluded-slots:
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 47
+    - 48
+    - 49
+
+not-player: "&cVous n'êtes pas un joueur."
+no-permission: "&cVous n'avez pas la permission."
+no-money: "&cVous n'avez pas assez de points."
+buy-new-line: "&aVous avez acheté une nouvelle ligne."
+not-island: "&cTu dois avoir une île pour intéragir avec les ruches."
+not-your-beehive: "&cCette ruche n'est pas à toi."
+empty-rewards: "&cTu n'as rien à récupérer."
+end-time: "&aUne ruche vient de se réinitialisée !"
+add-boost: "&aTu as ajouté un nouveau boost."
+remove-boost: "&cTu as supprimé un boost."
+add-bees: "&aTu as ajouté une abeille dans la ruche."
+remove-bees: "&cTu as supprimé une abeille de la ruche."

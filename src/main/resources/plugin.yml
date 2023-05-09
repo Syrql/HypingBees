@@ -1,0 +1,8 @@
+name: HypingBees
+version: 0.0.1
+author: SYRQL
+main: fr.syrql.hypingbees.HypingBees
+api-version: 1.18
+commands:
+  hbeesgive:
+  hboostgive:
