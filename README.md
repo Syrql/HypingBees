@@ -54,7 +54,7 @@ Auteur seul:
 
 ## Contact
 
-* My personal discord ``SYRQL#0666``
+* Mon discord personnel ``SYRQL#0666``
 * **[Discord commandes](https://discord.gg/mK6Q2ddTcy)**
 
 ## License
