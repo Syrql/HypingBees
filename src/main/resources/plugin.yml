@@ -1,5 +1,5 @@
 name: HypingBees
-version: 0.0.1
+version: 0.0.3
 author: SYRQL
 main: fr.syrql.hypingbees.HypingBees
 api-version: 1.18
