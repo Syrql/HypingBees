@@ -69,7 +69,7 @@ public class InventoryBeehiveListener implements Listener {
                 beehive.getCurrentBees().put(slot, bees);
                 event.getInventory().setItem(slot, itemBeesCopy);
                 // put time to default
-                beehive.setTime(this.configuration.getCycleTime());
+                beehive.setTime(0);
                 // send instructions
                 player.sendMessage(this.configuration.getAddBees());
                 player.closeInventory();

@@ -3,6 +3,8 @@ package fr.syrql.hypingbees.task;
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.configuration.Configuration;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import world.bentobox.bentobox.BentoBox;
 import world.bentobox.bentobox.database.objects.Island;
@@ -21,7 +23,6 @@ public class BeehiveTask implements Runnable {
 
         // Loop every beehives
         this.hypingBees.getProvider().getBeehives().forEach(beehive -> {
-
             // get beehive time
             int time = beehive.getTime();
             // get island at location
@@ -55,7 +56,7 @@ public class BeehiveTask implements Runnable {
                 }
             }
             // check if time is < to 0
-            if (time <= 0) {
+            if (time >= configuration.getCycleTime()) {
                 // get alls bees
                 beehive.getCurrentBees().forEach((integer, bees) -> {
                     // add to rewards bees rewards
@@ -64,15 +65,14 @@ public class BeehiveTask implements Runnable {
                 });
                 // loop every players in island
                 for (Player player : island.getPlayersOnIsland()) {
-
                     if (island.getMemberSet().contains(player.getUniqueId()))
                         player.sendMessage(this.configuration.getEndTime());
                 }
                 // reset cycle time
-                beehive.setTime(hypingBees.getConfiguration().getCycleTime());
+                beehive.setTime(0);
             } else {
                 // update time
-                beehive.setTime(time - (beehive.getCurrentBoost() == null ? 1 : beehive.getCurrentBoost().getMultiplicator()));
+                beehive.setTime(time + (beehive.getCurrentBoost() == null ? 1 : beehive.getCurrentBoost().getMultiplicator()));
                 // update holo
                 beehive.updateHologram(this.configuration.getHologramsLine(beehive));
             }

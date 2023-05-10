@@ -10,6 +10,7 @@ import fr.syrql.hypingbees.commands.HBeesGiveCommand;
 import fr.syrql.hypingbees.commands.HBoostGiveCommand;
 import fr.syrql.hypingbees.configuration.Configuration;
 import fr.syrql.hypingbees.listeners.*;
+import fr.syrql.hypingbees.task.BeehiveInventoryTask;
 import fr.syrql.hypingbees.task.BeehiveTask;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import fr.syrql.hypingbees.utils.files.IOUtil;
@@ -37,6 +38,7 @@ public class HypingBees extends JavaPlugin {
         this.registerCommands();
 
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveTask(this), 1L, 20L);
+        this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveInventoryTask(this), 1L, 20L);
 
         this.getServer().getScheduler().scheduleSyncDelayedTask(this,
                 () -> this.provider.getBeehives()

@@ -38,7 +38,7 @@ beehives:
     empty: "&7&l▊"
     material: PAPER
     name: "%progressbar%"
-    states: 5
+    states: 15
     lore:
       - "Eheh"
     slots:

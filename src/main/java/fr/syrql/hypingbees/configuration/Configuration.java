@@ -169,24 +169,15 @@ public class Configuration {
 
         List<String> lines = new ArrayList<>();
 
-        /*
         this.hologramsLine
                 .forEach(s -> lines.add(s
                         .replace("%time%", beehive.progressBar(
                                 this.hypingBees.getConfiguration(),
                                 beehive.getTime(),
                                 hypingBees.getConfiguration().getCycleTime(),
-                                5))
+                                this.getProgressState()))
                         .replace("%bees-size%", String.valueOf(beehive.getCurrentBees().size()))));
-         */
-        this.hologramsLine
-                .forEach(s -> lines.add(s
-                        .replace("%time%", beehive.progressBar(beehive.getTime(),
-                                this.getCycleTime(),
-                                this.getProgressState(),
-                                '|', ChatColor.GREEN,
-                                ChatColor.GRAY))
-                        .replace("%bees-size%", String.valueOf(beehive.getCurrentBees().size()))));
+
 
         return lines;
     }

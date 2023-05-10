@@ -9,6 +9,7 @@ import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.buyable.data.BuyableLine;
 import fr.syrql.hypingbees.configuration.Configuration;
 import fr.syrql.hypingbees.utils.item.ItemBuilder;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -119,7 +120,7 @@ public class Beehive implements Serializable {
     /**
      * Beehive Field hologram
      *
-     * @param buyableLines the current hologram
+     * @param hologram the current hologram
      * @return Hologram
      */
 
@@ -141,6 +142,7 @@ public class Beehive implements Serializable {
      * @param rewards
      * @param boosts
      */
+
 
     public Beehive(String id, String islandUUID, int time, HashMap<Integer, Bees> currentBees, LinkedList<BuyableLine> buyableLines, String world, int x, int y, int z, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
         this.id = id;
@@ -349,7 +351,7 @@ public class Beehive implements Serializable {
     /**
      * This is a setter which set the x
      *
-     * @return x - the x to be set
+     * @param x - the x to be set
      */
 
     public void setX(int x) {
@@ -369,7 +371,7 @@ public class Beehive implements Serializable {
     /**
      * This is a setter which set the y
      *
-     * @return y - the y to be set
+     * @param y - the y to be set
      */
 
     public void setY(int y) {
@@ -389,7 +391,7 @@ public class Beehive implements Serializable {
     /**
      * This is a setter which get set z
      *
-     * @return z - the z to be set
+     * @param z - the z to be set
      */
 
     public void setZ(int z) {
@@ -409,7 +411,7 @@ public class Beehive implements Serializable {
     /**
      * This is a setter which set the hologram
      *
-     * @return hologram - the hologram to be set
+     * @param hologram - the hologram to be set
      */
 
     public void setHologram(Hologram hologram) {
@@ -435,11 +437,7 @@ public class Beehive implements Serializable {
 
     public void openBeehiveInventory(Configuration configuration, HypingBees hypingBees, Player player) {
 
-
-        NamedInventory namedInventory = hypingBees.getBeehiveManager().getNamedInventoryList()
-                .stream().filter(inventory -> inventory.getDuration() < this.time)
-                .max(Comparator.comparingInt(NamedInventory::getDuration))
-                .orElse(null);
+        NamedInventory namedInventory = hypingBees.getBeehiveManager().getNamedInventoryList().stream().filter(inventory -> inventory.getDuration() < this.time).max(Comparator.comparingInt(NamedInventory::getDuration)).orElse(null);
         String inventoryName;
 
         if (namedInventory == null || this.time >= hypingBees.getConfiguration().getCycleTime())
@@ -447,60 +445,9 @@ public class Beehive implements Serializable {
 
         else inventoryName = namedInventory.getInventoryName();
 
-        Inventory inventory = Bukkit.createInventory(null,
-                hypingBees.getBeehiveManager().getInventorySize(),
-                inventoryName);
+        Inventory inventory = Bukkit.createInventory(null, hypingBees.getBeehiveManager().getInventorySize(), inventoryName);
 
-        for (int i = 0; i < inventory.getSize(); i++) {
-            if (configuration.getExcludedInvisSlots().contains(i)) continue;
-
-            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial())
-                    .setName(configuration.getInvisName())
-                    .setCustomModelData(configuration.getInvisData())
-                    .toItemStack());
-        }
-
-        for (BuyableLine buyableLine : this.buyableLines) {
-            inventory.setItem(buyableLine.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
-        }
-
-        inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
-
-        this.currentBees.forEach((slot, bees) -> {
-
-            ItemStack itemstack = new ItemBuilder(Material.getMaterial(bees.getMaterial()))
-                    .setName(bees.getName())
-                    .setLore(bees.getLore())
-                    .toItemStack();
-
-            if (bees.isGlow()) {
-                itemstack.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 5);
-                ItemMeta itemMeta = itemstack.getItemMeta();
-                itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                itemstack.setItemMeta(itemMeta);
-            }
-
-            inventory.setItem(slot, new ItemBuilder(Material.getMaterial(bees.getMaterial()))
-                    .setName(bees.getName())
-                    .setLore(bees.getLore())
-                    .toItemStack());
-        });
-
-        for (int i : configuration.getProgressSlots()) {
-            inventory.setItem(i, new ItemBuilder(configuration.getProgressType())
-                    //.setName(this.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState()))
-                    .setName(this.progressBar(this.time, configuration.getCycleTime(), configuration.getProgressState(), '|', ChatColor.GREEN, ChatColor.GRAY))
-                    .setLore(configuration.getProgressLore())
-                    .toItemStack());
-        }
-
-        if (this.getBoosts() != null) {
-            this.getBoosts().forEach((integer, boost) -> inventory.setItem(integer, boost.toItemStack()));
-        }
-
-        inventory.setItem(hypingBees.getBoostManager().getCurrentBoostSlot(),
-                this.currentBoost == null ? new ItemStack(Material.AIR) : this.currentBoost.toItemStack());
-
+        this.addInventoryItem(hypingBees, configuration, inventory);
 
         player.openInventory(inventory);
 
@@ -508,13 +455,54 @@ public class Beehive implements Serializable {
 
     }
 
-    public String progressBar(int current, int max, int totalBars, char symbol, ChatColor completedColor,
-                              ChatColor notCompletedColor) {
-        float percent = (float) current / max;
-        int progressBars = (int) (totalBars * percent);
+    public void addInventoryItem(HypingBees hypingBees, Configuration configuration, Inventory inventory) {
 
-        return Strings.repeat("" + completedColor + symbol, progressBars)
-                + Strings.repeat("" + notCompletedColor + symbol, totalBars - progressBars);
+        this.addExcludedSlots(configuration, inventory);
+        this.addBeesOnInventory(inventory);
+
+        for (BuyableLine buyableLine : this.buyableLines) {
+            inventory.setItem(buyableLine.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
+        }
+
+        inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
+
+        for (int i : configuration.getProgressSlots()) {
+            inventory.setItem(i, new ItemBuilder(configuration.getProgressType()).setName(this.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState())).setLore(configuration.getProgressLore()).toItemStack());
+        }
+
+        if (this.getBoosts() != null) {
+            this.getBoosts().forEach((integer, boost) -> inventory.setItem(integer, boost.toItemStack()));
+        }
+
+        inventory.setItem(hypingBees.getBoostManager().getCurrentBoostSlot(), this.currentBoost == null ? new ItemStack(Material.AIR) : this.currentBoost.toItemStack());
+
+    }
+
+    public void addExcludedSlots(Configuration configuration, Inventory inventory) {
+        for (int i = 0; i < inventory.getSize(); i++) {
+            if (configuration.getExcludedInvisSlots().contains(i)) continue;
+
+            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial()).setName(configuration.getInvisName()).setCustomModelData(configuration.getInvisData()).toItemStack());
+        }
+    }
+
+    public void addBeesOnInventory(Inventory inventory) {
+
+        this.currentBees.forEach((slot, bees) -> {
+            ItemStack itemstack = bees.toItemStack();
+            inventory.setItem(slot, itemstack);
+        });
+
+    }
+
+    public String progressBar(Configuration configuration, int value, int maxvalue, int size) {
+        float percentage = (float) value / maxvalue;
+        int progress = (int) (size * percentage);
+        int emptyProgress = size - progress;
+
+        String progressText = StringUtils.repeat(configuration.getProgress(), progress);
+        String emptyProgressText = StringUtils.repeat(configuration.getProgressEmpty(), emptyProgress);
+        return progressText + emptyProgressText;
     }
 
     public Location toLocation() {
