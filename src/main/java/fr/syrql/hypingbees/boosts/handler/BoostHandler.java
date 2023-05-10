@@ -1,24 +1,23 @@
-package fr.syrql.hypingbees.boosts.manager;
+package fr.syrql.hypingbees.boosts.handler;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.boosts.data.Boost;
+import fr.syrql.hypingbees.boosts.factory.BoostFactory;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BoostManager {
+public class BoostHandler {
 
     private final HypingBees hypingBees;
-    private final LinkedList<Boost> boosts;
+    private final LinkedList<Boost> boosts = new LinkedList<>();
     private final List<Integer> slotList;
     private final int currentBoostSlot;
 
-    public BoostManager(HypingBees hypingBees) {
+    public BoostHandler(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
-        this.boosts = new LinkedList<>();
         this.slotList = this.hypingBees.getConfigManager().getIntList("boosts.slots");
         this.currentBoostSlot = this.hypingBees.getConfigManager().getInt("boosts.currentboost-slot");
         this.init();
@@ -29,13 +28,11 @@ public class BoostManager {
             String path = "boosts.types." + key;
 
             ConfigManager config = this.hypingBees.getConfigManager();
-            ;
 
-            Boost boost = new Boost(key, config.getString(path + ".name"), config.getStringList(path + ".lore"),
-                    config.getInt(path + ".speed-multiplier"), config.getInt(path + ".duration"),
-                    config.getString(path + ".material"), config.getInt(path + ".customModelData"));
-
-            this.boosts.add(boost);
+            this.boosts.add(new BoostFactory()
+                    .create(key, config.getString(path + ".name"), config.getStringList(path + ".lore"),
+                            config.getInt(path + ".speed-multiplier"), config.getInt(path + ".duration"),
+                            config.getString(path + ".material"), config.getInt(path + ".customModelData")));
         }
     }
 

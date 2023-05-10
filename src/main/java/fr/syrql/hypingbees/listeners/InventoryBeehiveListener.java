@@ -2,9 +2,10 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.bees.data.Bees;
 import fr.syrql.hypingbees.configuration.Configuration;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,10 +17,14 @@ public class InventoryBeehiveListener implements Listener {
 
     private final HypingBees hypingBees;
     private final Configuration configuration;
+    private final BeehiveHandler beehiveHandler;
+    private final BeehiveInventory beehiveInventory;
 
     public InventoryBeehiveListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         this.configuration = hypingBees.getConfiguration();
+        this.beehiveHandler = this.hypingBees.getBeehiveHandler();
+        this.beehiveInventory = this.hypingBees.getBeehiveInventory();
     }
 
     @EventHandler
@@ -28,7 +33,7 @@ public class InventoryBeehiveListener implements Listener {
 
         if (event.getCurrentItem() == null) return;
         // Get current beehive
-        Beehive beehive = this.hypingBees.getBeehiveManager().getCurrentPlayerBeehive(player.getUniqueId());
+        Beehive beehive = this.beehiveHandler.getCurrentPlayerBeehive(player.getUniqueId());
         // check non-null beehive
         if (beehive == null) return;
         // cancel event
@@ -36,7 +41,7 @@ public class InventoryBeehiveListener implements Listener {
         // check if clickedinventory is beehive or player inventory
         if (event.getClickedInventory() != null && event.getClickedInventory().getType() == InventoryType.CHEST) {
             // get placed bees at slot
-            Bees placedBees = this.hypingBees.getBeesManager().getBeesBySlot(beehive, event.getSlot());
+            Bees placedBees = this.hypingBees.getBeesHandler().getBeesBySlot(beehive, event.getSlot());
             // check if non-null
             if (placedBees == null) return;
             // remove current bees
@@ -47,12 +52,12 @@ public class InventoryBeehiveListener implements Listener {
             else
                 player.getInventory().addItem(placedBees.toItemStack());
             // update current beehive inventory
-            beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+            this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
             // Send player message
             player.sendMessage(configuration.getRemoveBees());
         } else {
             // get bees by itemstack
-            Bees bees = this.hypingBees.getBeesManager().getBeesByItemStack(event.getCurrentItem());
+            Bees bees = this.hypingBees.getBeesHandler().getBeesByItemStack(event.getCurrentItem());
             // check bees non-null
             if (bees == null) return;
             // create bees copy
@@ -75,7 +80,7 @@ public class InventoryBeehiveListener implements Listener {
                 // send player message
                 player.sendMessage(this.configuration.getAddBees());
                 // Update opened player inventory
-                beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+                this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
                 // remove item from player inventory
                 player.getInventory().removeItem(itemBeesCopy);
                 break;

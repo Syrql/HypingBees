@@ -2,6 +2,8 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.configuration.Configuration;
 import org.bukkit.Material;
@@ -26,10 +28,15 @@ public class BeehiveListener implements Listener {
     private final HypingBees hypingBees;
     private final LinkedList<BuyableSlot> buyableSlots;
     private final Configuration configuration;
+    private final BeehiveHandler beehiveHandler;
+    private final BeehiveInventory beehiveInventory;
+
     public BeehiveListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
-        this.buyableSlots = this.hypingBees.getBuyableManager().getBuyableLines();
+        this.buyableSlots = this.hypingBees.getBuyableHandler().getBuyableSlots();
         this.configuration = hypingBees.getConfiguration();
+        this.beehiveHandler = this.hypingBees.getBeehiveHandler();
+        this.beehiveInventory = this.hypingBees.getBeehiveInventory();
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
@@ -58,16 +65,16 @@ public class BeehiveListener implements Listener {
         }
 
         // Check if beehive is null
-        if (this.hypingBees.getBeehiveManager().getBeehiveByLocation(block.getLocation()) == null) {
-            this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableSlots);
+
+        if (this.beehiveHandler.getBeehiveByLocation(block.getLocation()) == null) {
+            this.beehiveHandler.createBeehive(block, island, this.buyableSlots);
         }
 
         // Get beehive
-        Beehive beehive = this.hypingBees.getBeehiveManager().getBeehiveByLocation(block.getLocation());
+        Beehive beehive = this.hypingBees.getBeehiveHandler().getBeehiveByLocation(block.getLocation());
 
         // open beehive inventory
-        beehive.openBeehiveInventory(this.configuration, hypingBees, player);
-
+        this.beehiveInventory.openBeehiveInventory(this.configuration, hypingBees, beehive, player);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
@@ -91,7 +98,7 @@ public class BeehiveListener implements Listener {
         }
 
         // Create Beehive
-        this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableSlots);
+        this.beehiveHandler.createBeehive(block, island, this.buyableSlots);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
@@ -116,7 +123,7 @@ public class BeehiveListener implements Listener {
         }
 
         // Get beehive by location
-        Beehive beehive = hypingBees.getBeehiveManager().getBeehiveByLocation(block.getLocation());
+        Beehive beehive = this.beehiveHandler.getBeehiveByLocation(block.getLocation());
         //check non-null beehive
         if (beehive == null) return;
         // Check island id

@@ -2,6 +2,8 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.configuration.Configuration;
 import org.bukkit.entity.Player;
@@ -17,9 +19,14 @@ public class BoostListener implements Listener {
 
     private final HypingBees hypingBees;
     private final Configuration configuration;
+    private final BeehiveHandler beehiveHandler;
+    private final BeehiveInventory beehiveInventory;
+
     public BoostListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         this.configuration = hypingBees.getConfiguration();
+        this.beehiveHandler = this.hypingBees.getBeehiveHandler();
+        this.beehiveInventory = this.hypingBees.getBeehiveInventory();
     }
 
     @EventHandler
@@ -29,7 +36,7 @@ public class BoostListener implements Listener {
         if (event.getCurrentItem() == null) return;
 
         // Get current Beehive
-        Beehive beehive = this.hypingBees.getBeehiveManager().getCurrentPlayerBeehive(player.getUniqueId());
+        Beehive beehive = this.beehiveHandler.getCurrentPlayerBeehive(player.getUniqueId());
         // Check beehive non-null
         if (beehive == null) return;
 
@@ -39,7 +46,7 @@ public class BoostListener implements Listener {
         // check if clickedslot is in beehive
         if (event.getClickedInventory() != null && event.getClickedInventory().getType() == InventoryType.CHEST) {
             // get current boost
-            Boost waitBoostBySlot = this.hypingBees.getBeesManager().getWaitBoostBySlot(beehive, event.getSlot());
+            Boost waitBoostBySlot = this.hypingBees.getBeesHandler().getWaitBoostBySlot(beehive, event.getSlot());
             // check boost non-null
             if (waitBoostBySlot == null) return;
             // Remove boost from beehive
@@ -50,13 +57,13 @@ public class BoostListener implements Listener {
             else
                 player.getInventory().addItem(waitBoostBySlot.toItemStack());
             // Update inventory and send player message
-            beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+            this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
             player.sendMessage(this.configuration.getRemoveBoost());
 
         } else {
 
             // Section to add boost in beehive
-            Boost boost = this.hypingBees.getBoostManager().getBoostByItemStack(event.getCurrentItem());
+            Boost boost = this.hypingBees.getBoostHandler().getBoostByItemStack(event.getCurrentItem());
 
             if (boost == null) return;
 
@@ -69,7 +76,7 @@ public class BoostListener implements Listener {
             if (beehive.getCurrentBoost() == null) {
 
                 // set item to current boost
-                event.getInventory().setItem(this.hypingBees.getBoostManager().getCurrentBoostSlot(), itemBeesCopy);
+                event.getInventory().setItem(this.hypingBees.getBoostHandler().getCurrentBoostSlot(), itemBeesCopy);
                 // add current boost
                 beehive.setCurrentBoost(boost);
 
@@ -77,14 +84,14 @@ public class BoostListener implements Listener {
                 player.sendMessage(this.configuration.getAddBoost());
 
                 // Update inventory
-                beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+                this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
 
                 player.getInventory().removeItem(itemBeesCopy);
 
             } else {
 
                 // There is already current boost, add to waiting boost list
-                for (Integer slot : this.hypingBees.getBoostManager().getSlotList()) {
+                for (Integer slot : this.hypingBees.getBoostHandler().getSlotList()) {
                     ItemStack itemStack = event.getInventory().getItem(slot);
 
                     LinkedHashMap<Integer, Boost> currentBoosts = beehive.getBoosts();
@@ -101,7 +108,7 @@ public class BoostListener implements Listener {
                     // Send message to player
                     player.sendMessage(this.configuration.getAddBoost());
                     // Update inventory
-                    beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+                    this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
                     // remove boost from player inventory
                     player.getInventory().removeItem(itemBeesCopy);
 

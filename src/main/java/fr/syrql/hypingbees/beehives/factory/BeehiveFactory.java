@@ -1,7 +1,7 @@
 package fr.syrql.hypingbees.beehives.factory;
 
 import fr.syrql.hypingbees.beehives.data.Beehive;
-import fr.syrql.hypingbees.beehives.data.Rewards;
+import fr.syrql.hypingbees.rewards.data.Rewards;
 import fr.syrql.hypingbees.bees.data.Bees;
 import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.buyable.data.BuyableSlot;
@@ -18,16 +18,13 @@ public class BeehiveFactory {
      *
      * @param id
      * @param islandUUID
-     * @param time
-     * @param bees
      * @param buyableSlots
      * @param location
      * @param rewards
-     * @param boosts
      */
 
-    public Beehive create(String id, String islandUUID, int time, HashMap<Integer, Bees> bees, LinkedList<BuyableSlot> buyableSlots, Location location, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
-        return new Beehive(id, islandUUID, time, bees, buyableSlots, location.getWorld().getName(),
-                location.getBlockX(), location.getBlockY(), location.getBlockZ(), rewards, boosts);
+    public Beehive create(String id, String islandUUID, LinkedList<BuyableSlot> buyableSlots, Location location, Rewards rewards) {
+        return new Beehive(id, islandUUID, 0, new HashMap<>(), buyableSlots, location.getWorld().getName(),
+                location.getBlockX(), location.getBlockY(), location.getBlockZ(), rewards, new LinkedHashMap<>());
     }
 }

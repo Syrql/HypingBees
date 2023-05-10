@@ -14,7 +14,6 @@ import java.util.List;
 public class Configuration {
 
     private final HypingBees hypingBees;
-
     private final String playerNotOnline;
     private final int nearBlocks;
     private final int cycleTime;

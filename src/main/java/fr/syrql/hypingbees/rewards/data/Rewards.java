@@ -1,4 +1,4 @@
-package fr.syrql.hypingbees.beehives.data;
+package fr.syrql.hypingbees.rewards.data;
 
 import java.util.List;
 

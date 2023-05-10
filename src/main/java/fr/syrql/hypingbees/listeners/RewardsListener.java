@@ -2,6 +2,8 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.configuration.Configuration;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -15,10 +17,12 @@ public class RewardsListener implements Listener {
 
     private final HypingBees hypingBees;
     private final Configuration configuration;
+    private final BeehiveHandler beehiveHandler;
 
     public RewardsListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         this.configuration = hypingBees.getConfiguration();
+        this.beehiveHandler = this.hypingBees.getBeehiveHandler();
     }
 
     @EventHandler
@@ -29,7 +33,7 @@ public class RewardsListener implements Listener {
         if (event.getCurrentItem() == null) return;
 
         // get current beehive
-        Beehive beehive = this.hypingBees.getBeehiveManager().getCurrentPlayerBeehive(player.getUniqueId());
+        Beehive beehive = this.beehiveHandler.getCurrentPlayerBeehive(player.getUniqueId());
         // check beehive non-null
         if (beehive == null) return;
         // check if clicked inventory is similar

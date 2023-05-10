@@ -1,8 +1,9 @@
-package fr.syrql.hypingbees.bees.manager;
+package fr.syrql.hypingbees.bees.handler;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
 import fr.syrql.hypingbees.bees.data.Bees;
+import fr.syrql.hypingbees.bees.factory.BeesFactory;
 import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import org.bukkit.ChatColor;
@@ -11,12 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeesManager {
+public class BeesHandler {
 
     private final HypingBees hypingBees;
     private final ArrayList<Bees> beesList;
 
-    public BeesManager(HypingBees hypingBees) {
+    public BeesHandler(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         this.beesList = new ArrayList<>();
         this.init();
@@ -32,13 +33,11 @@ public class BeesManager {
             List<String> lore = new ArrayList<>();
             config.getStringList(path + ".lore").forEach(line -> lore.add(ChatColor.translateAlternateColorCodes('&', line)));
 
-            Bees bees = new Bees(config.getString(path + ".type"),
+            this.beesList.add(new BeesFactory().create(config.getString(path + ".type"),
                     config.getString(path + ".name"),
                     lore, config.getString(path + ".material"),
                     config.getBoolean(path + ".glow"), config.getInt(path + ".modeldata"),
-                    config.getStringList(path + ".production.rewards"), config.getStringList(path + ".production.commands"));
-
-            this.beesList.add(bees);
+                    config.getStringList(path + ".production.rewards"), config.getStringList(path + ".production.commands")));
 
         }
     }

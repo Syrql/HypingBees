@@ -2,6 +2,8 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.configuration.Configuration;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -16,10 +18,12 @@ public class BuyingLineListener implements Listener {
 
     private final HypingBees hypingBees;
     private final Configuration configuration;
+    private final BeehiveHandler beehiveHandler;
 
     public BuyingLineListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         this.configuration = hypingBees.getConfiguration();
+        this.beehiveHandler = this.hypingBees.getBeehiveHandler();
     }
 
     @EventHandler
@@ -29,12 +33,12 @@ public class BuyingLineListener implements Listener {
         if (event.getCurrentItem() == null) return;
 
         // Get current player beehive
-        Beehive beehive = this.hypingBees.getBeehiveManager().getCurrentPlayerBeehive(player.getUniqueId());
+        Beehive beehive = this.beehiveHandler.getCurrentPlayerBeehive(player.getUniqueId());
         // Chekc if beehive is null or not
         if (beehive == null) return;
         // get current line
         ItemStack itemStack = event.getCurrentItem();
-        ItemStack buyable = this.hypingBees.getBuyableManager().getBuyableItemStack();
+        ItemStack buyable = this.hypingBees.getBuyableHandler().getBuyableItemStack();
         // Check if item is buyable line or not
         if (!itemStack.isSimilar(buyable)) return;
         // Cancel event

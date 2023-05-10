@@ -2,19 +2,12 @@ package fr.syrql.hypingbees.beehives.data;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
-import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.bees.data.Bees;
 import fr.syrql.hypingbees.boosts.data.Boost;
 import fr.syrql.hypingbees.buyable.data.BuyableSlot;
-import fr.syrql.hypingbees.configuration.Configuration;
-import fr.syrql.hypingbees.utils.bar.ProgressBar;
-import fr.syrql.hypingbees.utils.item.ItemBuilder;
+import fr.syrql.hypingbees.rewards.data.Rewards;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.Serializable;
 import java.util.*;
@@ -428,73 +421,6 @@ public class Beehive implements Serializable {
 
     public void destroyHologram() {
         this.hologram.destroy();
-    }
-
-    public void openBeehiveInventory(Configuration configuration, HypingBees hypingBees, Player player) {
-
-        NamedInventory namedInventory = hypingBees.getBeehiveManager().findClosestNamedInventory(hypingBees.getBeehiveManager()
-                .getNamedInventoryList(), this.time);
-
-        String inventoryName = "";
-
-        if (this.time <= hypingBees.getConfiguration().getCycleTime()) {
-            if (namedInventory == null || this.currentBees == null)
-                inventoryName = hypingBees.getBeehiveManager().getInventoryName();
-            else inventoryName = namedInventory.getInventoryName();
-        }
-
-        Inventory inventory = Bukkit.createInventory(null, hypingBees.getBeehiveManager().getInventorySize(), inventoryName);
-
-        this.addInventoryItem(hypingBees, configuration, inventory);
-
-        player.openInventory(inventory);
-
-        hypingBees.getBeehiveManager().putCurrentBeehive(player.getUniqueId(), this);
-
-    }
-
-    public void addInventoryItem(HypingBees hypingBees, Configuration configuration, Inventory inventory) {
-
-        inventory.clear();
-
-        this.addExcludedSlots(configuration, inventory);
-        this.addBeesOnInventory(inventory);
-
-        for (BuyableSlot buyableSlot : this.buyableSlots) {
-            inventory.setItem(buyableSlot.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
-        }
-
-        inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
-
-        for (int i : configuration.getProgressSlots()) {
-            inventory.setItem(i, new ItemBuilder(configuration.getProgressType()).setName(ProgressBar.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState())).setLore(configuration.getProgressLore()).toItemStack());
-        }
-
-        if (this.getBoosts() != null) {
-            this.getBoosts().forEach((integer, boost) -> inventory.setItem(integer, boost.toItemStack()));
-        }
-
-        inventory.setItem(hypingBees.getBoostManager().getCurrentBoostSlot(), this.currentBoost == null ? new ItemStack(Material.AIR) : this.currentBoost.toItemStack());
-
-    }
-
-    public void addExcludedSlots(Configuration configuration, Inventory inventory) {
-        for (int i = 0; i < inventory.getSize(); i++) {
-            if (configuration.getExcludedInvisSlots().contains(i)) continue;
-
-            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial())
-                    .setName(configuration.getInvisName())
-                    .setCustomModelData(configuration.getInvisData())
-                    .toItemStack());
-        }
-    }
-
-    public void addBeesOnInventory(Inventory inventory) {
-
-        this.currentBees.forEach((slot, bees) -> {
-            ItemStack itemstack = bees.toItemStack();
-            inventory.setItem(slot, itemstack);
-        });
     }
 
     public Location toLocation() {

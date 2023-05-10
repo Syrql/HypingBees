@@ -68,7 +68,7 @@ public class HBeesCommand extends ACommand implements TabCompleter {
                     case "bee" -> {
 
                         // Find bee
-                        Bees bees = this.hypingBees.getBeesManager().getBeesByType(args[3]);
+                        Bees bees = this.hypingBees.getBeesHandler().getBeesByType(args[3]);
 
                         // Check non-null
                         if (bees == null) {
@@ -102,7 +102,7 @@ public class HBeesCommand extends ACommand implements TabCompleter {
                     // Case boost
                     case "boost" -> {
                         // Find boost
-                        Boost boost = this.hypingBees.getBoostManager().getBoostByType(args[3]);
+                        Boost boost = this.hypingBees.getBoostHandler().getBoostByType(args[3]);
 
                         // Check not-null
                         if (boost == null) {
@@ -156,13 +156,13 @@ public class HBeesCommand extends ACommand implements TabCompleter {
             if (args[2].equalsIgnoreCase("bee")) {
                 List<String> bees = new ArrayList<>();
 
-                this.hypingBees.getBeesManager().getBeesList().forEach(bee -> bees.add(bee.getType()));
+                this.hypingBees.getBeesHandler().getBeesList().forEach(bee -> bees.add(bee.getType()));
                 return bees;
                 // Send list of string boost type for the first args
             } else if (args[2].equalsIgnoreCase("boost")) {
                 List<String> boosts = new ArrayList<>();
 
-                this.hypingBees.getBoostManager().getBoosts().forEach(boost -> boosts.add(boost.getType()));
+                this.hypingBees.getBoostHandler().getBoosts().forEach(boost -> boosts.add(boost.getType()));
                 return boosts;
             } else return Collections.emptyList();
         }

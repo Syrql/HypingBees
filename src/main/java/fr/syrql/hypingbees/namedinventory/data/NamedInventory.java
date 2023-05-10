@@ -1,4 +1,4 @@
-package fr.syrql.hypingbees.beehives.data;
+package fr.syrql.hypingbees.namedinventory.data;
 
 public class NamedInventory {
 

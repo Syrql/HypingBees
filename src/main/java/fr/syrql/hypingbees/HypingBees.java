@@ -1,14 +1,17 @@
 package fr.syrql.hypingbees;
 
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.beehives.handler.BeehiveHandler;
+import fr.syrql.hypingbees.beehives.inventory.BeehiveInventory;
 import fr.syrql.hypingbees.beehives.manager.BeehiveManager;
 import fr.syrql.hypingbees.beehives.provider.BeehiveProvider;
-import fr.syrql.hypingbees.bees.manager.BeesManager;
-import fr.syrql.hypingbees.boosts.manager.BoostManager;
-import fr.syrql.hypingbees.buyable.manager.BuyableManager;
+import fr.syrql.hypingbees.bees.handler.BeesHandler;
+import fr.syrql.hypingbees.boosts.handler.BoostHandler;
+import fr.syrql.hypingbees.buyable.handler.BuyableSlotHandler;
 import fr.syrql.hypingbees.commands.HBeesCommand;
 import fr.syrql.hypingbees.configuration.Configuration;
 import fr.syrql.hypingbees.listeners.*;
+import fr.syrql.hypingbees.namedinventory.handler.NamedInventoryHandler;
 import fr.syrql.hypingbees.task.BeehiveInventoryTask;
 import fr.syrql.hypingbees.task.BeehiveTask;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
@@ -23,9 +26,12 @@ public class HypingBees extends JavaPlugin {
     private BeehiveManager beehiveManager;
     private ConfigManager configManager;
     private Configuration configuration;
-    private BuyableManager buyableManager;
-    private BeesManager beesManager;
-    private BoostManager boostManager;
+    private BuyableSlotHandler buyableSlotHandler;
+    private BeesHandler beesHandler;
+    private BoostHandler boostHandler;
+    private BeehiveHandler beehiveHandler;
+    private BeehiveInventory beehiveInventory;
+    private NamedInventoryHandler namedInventoryHandler;
 
     @Override
     public void onEnable() {
@@ -42,6 +48,8 @@ public class HypingBees extends JavaPlugin {
         this.registerListeners();
         // registerCommands
         this.registerCommands();
+        // Register Handlers
+        this.registerHandlers();
         // Setup task's async
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveTask(this), 1L, 20L);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveInventoryTask(this), 1L, 20L);
@@ -78,21 +86,26 @@ public class HypingBees extends JavaPlugin {
             this.provider = new BeehiveProvider(this);
             // Read every beehive's json
             this.provider.read();
-            // Register manager's
+            // Register handler's
             this.beehiveManager = new BeehiveManager(this);
-            this.buyableManager = new BuyableManager(this);
-            this.beesManager = new BeesManager(this);
-            this.boostManager = new BoostManager(this);
+            this.buyableSlotHandler = new BuyableSlotHandler(this);
+            this.beesHandler = new BeesHandler(this);
+            this.boostHandler = new BoostHandler(this);
         });
     }
 
+    private void registerHandlers() {
+        this.beehiveHandler = new BeehiveHandler(this);
+        this.namedInventoryHandler = new NamedInventoryHandler(this);
+    }
     private void registerManagers() {
         this.configManager = new ConfigManager(this);
         this.configuration = new Configuration(this);
         this.beehiveManager = new BeehiveManager(this);
-        this.buyableManager = new BuyableManager(this);
-        this.beesManager = new BeesManager(this);
-        this.boostManager = new BoostManager(this);
+        this.buyableSlotHandler = new BuyableSlotHandler(this);
+        this.beesHandler = new BeesHandler(this);
+        this.boostHandler = new BoostHandler(this);
+        this.beehiveInventory = new BeehiveInventory();
     }
 
     private void registerProviders() {
@@ -136,15 +149,27 @@ public class HypingBees extends JavaPlugin {
         return configuration;
     }
 
-    public BuyableManager getBuyableManager() {
-        return buyableManager;
+    public BuyableSlotHandler getBuyableHandler() {
+        return buyableSlotHandler;
     }
 
-    public BeesManager getBeesManager() {
-        return beesManager;
+    public BeesHandler getBeesHandler() {
+        return beesHandler;
     }
 
-    public BoostManager getBoostManager() {
-        return boostManager;
+    public BoostHandler getBoostHandler() {
+        return boostHandler;
+    }
+
+    public BeehiveHandler getBeehiveHandler() {
+        return beehiveHandler;
+    }
+
+    public BeehiveInventory getBeehiveInventory() {
+        return beehiveInventory;
+    }
+
+    public NamedInventoryHandler getNamedInventoryHandler() {
+        return namedInventoryHandler;
     }
 }
