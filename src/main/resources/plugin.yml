@@ -4,6 +4,4 @@ author: SYRQL
 main: fr.syrql.hypingbees.HypingBees
 api-version: 1.18
 commands:
-  hbeesgive:
-  hboostgive:
   hbees:

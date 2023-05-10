@@ -49,8 +49,8 @@ public class BoostListener implements Listener {
                 player.getLocation().getWorld().dropItemNaturally(player.getLocation(), waitBoostBySlot.toItemStack());
             else
                 player.getInventory().addItem(waitBoostBySlot.toItemStack());
-            // close and send to player boost remove
-            player.closeInventory();
+            // Update inventory and send player message
+            beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
             player.sendMessage(this.configuration.getRemoveBoost());
 
         } else {
@@ -75,9 +75,12 @@ public class BoostListener implements Listener {
 
                 // send instructions to player
                 player.sendMessage(this.configuration.getAddBoost());
-                player.closeInventory();
+
+                // Update inventory
+                beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+
                 player.getInventory().removeItem(itemBeesCopy);
-                player.updateInventory();
+
             } else {
 
                 // There is already current boost, add to waiting boost list
@@ -95,9 +98,10 @@ public class BoostListener implements Listener {
 
                     event.getInventory().setItem(slot, itemBeesCopy);
 
-                    // send instructions to player
+                    // Send message to player
                     player.sendMessage(this.configuration.getAddBoost());
-                    player.closeInventory();
+                    // Update inventory
+                    beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
                     // remove boost from player inventory
                     player.getInventory().removeItem(itemBeesCopy);
 

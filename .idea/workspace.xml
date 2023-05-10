@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc">
+    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Add hbees reload config.yml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/manager/BoostManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/manager/BoostManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesGiveCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBoostGiveCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +88,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.syrql.hypingbees.commands" />
       <recent name="fr.syrql.hypingbees.task" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -164,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683733635252</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add hbees reload config.yml">
+      <created>1683743443748</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1683743443748</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +201,7 @@
     <MESSAGE value="Start adding doc" />
     <MESSAGE value="Adding README.md" />
     <MESSAGE value="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc" />
+    <MESSAGE value="Add hbees reload config.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add hbees reload config.yml" />
   </component>
 </project>

@@ -14,6 +14,8 @@ import java.util.List;
 public class Configuration {
 
     private final HypingBees hypingBees;
+
+    private final String playerNotOnline;
     private final int nearBlocks;
     private final int cycleTime;
     private final List<Integer> slots;
@@ -44,10 +46,12 @@ public class Configuration {
     private final String removeBoost;
     private final String addBees;
     private final String removeBees;
+
     public Configuration(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
         ConfigManager configManager = hypingBees.getConfigManager();
 
+        this.playerNotOnline = configManager.getString("player-not-online");
         this.nearBlocks = configManager.getInt("beehives.near-block");
         this.cycleTime = configManager.getInt("beehives.cycle");
         this.slots = configManager.getIntList("beehives.inventory.bees-slots");
@@ -79,6 +83,10 @@ public class Configuration {
         this.addBees = configManager.getString("add-bees");
         this.removeBees = configManager.getString("remove-bees");
 
+    }
+
+    public String getPlayerNotOnline() {
+        return playerNotOnline;
     }
 
     public int getNearBlocks() {

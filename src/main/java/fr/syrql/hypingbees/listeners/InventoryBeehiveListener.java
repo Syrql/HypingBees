@@ -4,6 +4,7 @@ import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
 import fr.syrql.hypingbees.bees.data.Bees;
 import fr.syrql.hypingbees.configuration.Configuration;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,8 +46,9 @@ public class InventoryBeehiveListener implements Listener {
                 player.getLocation().getWorld().dropItemNaturally(player.getLocation(), placedBees.toItemStack());
             else
                 player.getInventory().addItem(placedBees.toItemStack());
-            // close and send instructions
-            player.closeInventory();
+            // update current beehive inventory
+            beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+            // Send player message
             player.sendMessage(configuration.getRemoveBees());
         } else {
             // get bees by itemstack
@@ -70,9 +72,11 @@ public class InventoryBeehiveListener implements Listener {
                 event.getInventory().setItem(slot, itemBeesCopy);
                 // put time to default
                 beehive.setTime(0);
-                // send instructions
+                // send player message
                 player.sendMessage(this.configuration.getAddBees());
-                player.closeInventory();
+                // Update opened player inventory
+                beehive.addInventoryItem(this.hypingBees, this.configuration, player.getOpenInventory().getTopInventory());
+                // remove item from player inventory
                 player.getInventory().removeItem(itemBeesCopy);
                 break;
 

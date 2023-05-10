@@ -137,6 +137,7 @@ beehive-invis:
     - 48
     - 49
 
+player-not-online: "&cCe joueur n'est pas connecté ou n'existe pas."
 not-player: "&cVous n'êtes pas un joueur."
 no-permission: "&cVous n'avez pas la permission."
 no-money: "&cVous n'avez pas assez de points."

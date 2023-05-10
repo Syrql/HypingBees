@@ -461,6 +461,8 @@ public class Beehive implements Serializable {
 
     public void addInventoryItem(HypingBees hypingBees, Configuration configuration, Inventory inventory) {
 
+        inventory.clear();
+
         this.addExcludedSlots(configuration, inventory);
         this.addBeesOnInventory(inventory);
 

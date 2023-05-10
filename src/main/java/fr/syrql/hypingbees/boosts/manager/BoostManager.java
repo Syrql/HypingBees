@@ -6,18 +6,19 @@ import fr.syrql.hypingbees.utils.config.ConfigManager;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BoostManager {
 
     private final HypingBees hypingBees;
-    private final List<Boost> boosts;
+    private final LinkedList<Boost> boosts;
     private final List<Integer> slotList;
     private final int currentBoostSlot;
 
     public BoostManager(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
-        this.boosts = new ArrayList<>();
+        this.boosts = new LinkedList<>();
         this.slotList = this.hypingBees.getConfigManager().getIntList("boosts.slots");
         this.currentBoostSlot = this.hypingBees.getConfigManager().getInt("boosts.currentboost-slot");
         this.init();
@@ -51,7 +52,7 @@ public class BoostManager {
         return slotList;
     }
 
-    public List<Boost> getBoosts() {
+    public LinkedList<Boost> getBoosts() {
         return boosts;
     }
 

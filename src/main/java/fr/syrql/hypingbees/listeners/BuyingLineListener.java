@@ -57,9 +57,10 @@ public class BuyingLineListener implements Listener {
         player.sendMessage(this.configuration.getBuyNewLine());
 
         // execute config commands
+
         buyableLine.getCommands().forEach(command ->
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
                 .replace("%player%", player.getName())
-                .replace("%prices%", String.valueOf(price))));
+                .replace("%prices%", String.valueOf((int) price))));
     }
 }

@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "fr.syrql"
-version = "0.0.2"
+version = "0.0.3"
 description = "HypingBees plugin"
 
 allprojects {

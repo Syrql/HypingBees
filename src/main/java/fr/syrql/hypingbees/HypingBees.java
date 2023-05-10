@@ -7,8 +7,6 @@ import fr.syrql.hypingbees.bees.manager.BeesManager;
 import fr.syrql.hypingbees.boosts.manager.BoostManager;
 import fr.syrql.hypingbees.buyable.manager.BuyableManager;
 import fr.syrql.hypingbees.commands.HBeesCommand;
-import fr.syrql.hypingbees.commands.HBeesGiveCommand;
-import fr.syrql.hypingbees.commands.HBoostGiveCommand;
 import fr.syrql.hypingbees.configuration.Configuration;
 import fr.syrql.hypingbees.listeners.*;
 import fr.syrql.hypingbees.task.BeehiveInventoryTask;
@@ -102,11 +100,8 @@ public class HypingBees extends JavaPlugin {
     }
 
     private void registerCommands() {
-        new HBeesGiveCommand(this);
-        new HBoostGiveCommand(this);
         new HBeesCommand(this);
-        this.getCommand("hbeesgive").setTabCompleter(new HBeesGiveCommand(this));
-        this.getCommand("hboostgive").setTabCompleter(new HBoostGiveCommand(this));
+        this.getCommand("hbees").setTabCompleter(new HBeesCommand(this));
     }
 
     public ConfigManager getConfigManager() {
