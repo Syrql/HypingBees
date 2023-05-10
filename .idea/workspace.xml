@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Add hbees reload config.yml&#10;Add doc&#10;Remove player.closeInventory() after add boost, bees, etc..">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/utils/bar/ProgressBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/NamedInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/NamedInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Rewards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Rewards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/factory/BeehiveFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/factory/BeehiveFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/manager/BeehiveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/manager/BeehiveManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/provider/BeehiveProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/provider/BeehiveProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/data/Bees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/data/Bees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/data/Boost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/data/Boost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/data/BuyableLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/data/BuyableSlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/manager/BuyableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/manager/BuyableManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BeehiveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BeehiveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/mysql/MysqlStorage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/utils/files/IOUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/utils/files/IOUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,13 +88,14 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PORCHERON/Desktop/dev/minecraft/HypingBees/src/main/resources&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/PORCHERON/Desktop/dev/minecraft/HypingBees/src/main/resources"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="fr.syrql.hypingbees.commands" />
@@ -176,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683745295473</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add hbees reload config.yml&#10;Add doc&#10;Remove player.closeInventory() after add boost, bees, etc..">
+      <created>1683745618682</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1683745618682</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

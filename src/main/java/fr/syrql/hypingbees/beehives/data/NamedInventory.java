@@ -2,7 +2,6 @@ package fr.syrql.hypingbees.beehives.data;
 
 public class NamedInventory {
 
-
     /**
      * NamedInventory type duration
      *
@@ -22,7 +21,7 @@ public class NamedInventory {
     private String inventoryName;
 
     /**
-     * Another constructor for class Time1
+     * Constructor of NamedInventory class
      *
      * @param duration Duration time for specified inventory
      * @param inventoryName Name of the specified inventory
@@ -46,7 +45,7 @@ public class NamedInventory {
     /**
      * This is a setter which set the duration
      *
-     * @return duration - the duration to be set
+     * @param duration - the duration to be set
      */
 
     public void setDuration(int duration) {
@@ -66,7 +65,7 @@ public class NamedInventory {
     /**
      * This is a setter which set the inventoryName
      *
-     * @return inventoryName - the inventoryName to be set
+     * @param inventoryName - the inventoryName to be set
      */
 
     public void setInventoryName(String inventoryName) {

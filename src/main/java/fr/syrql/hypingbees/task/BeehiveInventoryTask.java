@@ -17,12 +17,14 @@ public class BeehiveInventoryTask implements Runnable {
 
     @Override
     public void run() {
+
+        // Loop every online players
         Bukkit.getOnlinePlayers().forEach(player -> {
-
+            // Loop every player that are opening beehive
             Beehive beehive = this.hypingBees.getBeehiveManager().getCurrentPlayerBeehive(player.getUniqueId());
-
+            // Check beehive not-null
             if (beehive == null) return;
-
+            // Update inventory
             beehive.addInventoryItem(this.hypingBees, this.hypingBees.getConfiguration(), player.getOpenInventory().getTopInventory());
         });
     }

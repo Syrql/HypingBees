@@ -2,7 +2,7 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
-import fr.syrql.hypingbees.buyable.data.BuyableLine;
+import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.configuration.Configuration;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -24,11 +24,11 @@ import java.util.LinkedList;
 public class BeehiveListener implements Listener {
 
     private final HypingBees hypingBees;
-    private final LinkedList<BuyableLine> buyableLines;
+    private final LinkedList<BuyableSlot> buyableSlots;
     private final Configuration configuration;
     public BeehiveListener(HypingBees hypingBees) {
         this.hypingBees = hypingBees;
-        this.buyableLines = this.hypingBees.getBuyableManager().getBuyableLines();
+        this.buyableSlots = this.hypingBees.getBuyableManager().getBuyableLines();
         this.configuration = hypingBees.getConfiguration();
     }
 
@@ -59,7 +59,7 @@ public class BeehiveListener implements Listener {
 
         // Check if beehive is null
         if (this.hypingBees.getBeehiveManager().getBeehiveByLocation(block.getLocation()) == null) {
-            this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableLines);
+            this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableSlots);
         }
 
         // Get beehive
@@ -91,7 +91,7 @@ public class BeehiveListener implements Listener {
         }
 
         // Create Beehive
-        this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableLines);
+        this.hypingBees.getBeehiveManager().createBeehive(block, island, this.buyableSlots);
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)

@@ -12,7 +12,6 @@ public class IOUtil {
         this.gson = createGsonInstance();
     }
 
-
     public Gson createGsonInstance() {
         return new GsonBuilder()
                 .setPrettyPrinting()

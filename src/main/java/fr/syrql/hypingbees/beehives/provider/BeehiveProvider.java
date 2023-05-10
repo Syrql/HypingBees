@@ -26,6 +26,13 @@ public class BeehiveProvider implements IProvider<String, Beehive>, IReadable, I
         this.saveDir = new File(hypingBees.getDataFolder(), "/datas/");
     }
 
+    /**
+     * This function provide id and beehive value
+     *
+     * @param key - the key to be set
+     * @param value - the value to be set
+     */
+
     @Override
     public void provide(String key, Beehive value) {
         this.beehiveMap.put(key, value);
@@ -41,10 +48,21 @@ public class BeehiveProvider implements IProvider<String, Beehive>, IReadable, I
         this.beehiveMap.remove(key);
     }
 
+    /**
+     * This getter return beehive value by key
+     *
+     * @return  key - the value to be set
+     */
+
     @Override
     public Beehive get(String key) {
         return this.beehiveMap.get(key);
     }
+
+    /**
+     * This read() fuction will read every json files in datas directory
+     * @return Beehive map non-empty.
+     */
 
     @Override
     public void read() {
@@ -64,6 +82,11 @@ public class BeehiveProvider implements IProvider<String, Beehive>, IReadable, I
             }
         }
     }
+
+    /**
+     * This write() fuction will write every beehive in json files and put in datas directory
+     * @return Add to files directory
+     */
 
     @Override
     public void write() {
@@ -91,6 +114,11 @@ public class BeehiveProvider implements IProvider<String, Beehive>, IReadable, I
             FileUtils.save(file, json);
         }
     }
+
+    /**
+     * This Collection retourne Beehive's values
+     * @return Beehive map
+     */
 
     public Collection<Beehive> getBeehives() {
         return this.beehiveMap.values();

@@ -29,17 +29,23 @@ public class HypingBees extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // setup onEnable
         super.onEnable();
+        // Save default config.yml file
         this.saveDefaultConfig();
 
+        // register all providers
         this.registerProviders();
+        // registerManagers
         this.registerManagers();
+        // register listeners
         this.registerListeners();
+        // registerCommands
         this.registerCommands();
-
+        // Setup task's async
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveTask(this), 1L, 20L);
         this.getServer().getScheduler().runTaskTimerAsynchronously(this, new BeehiveInventoryTask(this), 1L, 20L);
-
+        // Setup every holo's
         this.getServer().getScheduler().scheduleSyncDelayedTask(this,
                 () -> this.provider.getBeehives()
                         .forEach(beehive -> beehive.createHologram(this.getConfiguration().getHologramsLine(beehive))), 40L);
@@ -47,26 +53,32 @@ public class HypingBees extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // Disable methode
         super.onDisable();
-
+        // destroy every holo's
         this.provider.getBeehives().forEach(Beehive::destroyHologram);
-
+        // Write every keys
         this.provider.write();
     }
 
     public void reload() {
-
+        // Async reload
         Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            // Reload bukkit config
             reloadConfig();
+            // Reload configmanager
             this.configManager = new ConfigManager(this);
+            // Reload Configuration
             configuration = new Configuration(this);
-
+            // Reload ioutil
             this.ioUtil = new IOUtil();
-
+            // Write beehive's
             this.provider.write();
+            // Reload provider
             this.provider = new BeehiveProvider(this);
+            // Read every beehive's json
             this.provider.read();
-
+            // Register manager's
             this.beehiveManager = new BeehiveManager(this);
             this.buyableManager = new BuyableManager(this);
             this.beesManager = new BeesManager(this);

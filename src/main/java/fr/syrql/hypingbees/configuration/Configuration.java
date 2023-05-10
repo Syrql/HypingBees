@@ -2,9 +2,9 @@ package fr.syrql.hypingbees.configuration;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
+import fr.syrql.hypingbees.utils.bar.ProgressBar;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import fr.syrql.hypingbees.utils.item.ItemBuilder;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -179,7 +179,7 @@ public class Configuration {
 
         this.hologramsLine
                 .forEach(s -> lines.add(s
-                        .replace("%time%", beehive.progressBar(
+                        .replace("%time%", ProgressBar.progressBar(
                                 this.hypingBees.getConfiguration(),
                                 beehive.getTime(),
                                 hypingBees.getConfiguration().getCycleTime(),

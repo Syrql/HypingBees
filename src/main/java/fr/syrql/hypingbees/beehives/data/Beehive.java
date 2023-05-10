@@ -1,26 +1,20 @@
 package fr.syrql.hypingbees.beehives.data;
 
-import com.google.common.base.Strings;
-import com.mojang.datafixers.types.templates.Named;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.bees.data.Bees;
 import fr.syrql.hypingbees.boosts.data.Boost;
-import fr.syrql.hypingbees.buyable.data.BuyableLine;
+import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.configuration.Configuration;
+import fr.syrql.hypingbees.utils.bar.ProgressBar;
 import fr.syrql.hypingbees.utils.item.ItemBuilder;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.io.Serializable;
 import java.util.*;
@@ -64,13 +58,13 @@ public class Beehive implements Serializable {
     private HashMap<Integer, Bees> currentBees;
 
     /**
-     * Beehive Field buyableLines
+     * Beehive Field buyableSlots
      *
-     * @param buyableLines the buyable lines
+     * @param buyableSlots the buyable lines
      * @return linkedlist of lines
      */
 
-    private LinkedList<BuyableLine> buyableLines;
+    private LinkedList<BuyableSlot> buyableSlots;
 
     /**
      * Beehive Field world
@@ -82,7 +76,7 @@ public class Beehive implements Serializable {
     private String world;
 
     /**
-     * Beehive Field buyableLines
+     * Beehive Field buyableSlots
      *
      * @param xyz the current location points
      * @return location points
@@ -128,13 +122,13 @@ public class Beehive implements Serializable {
     private transient Hologram hologram;
 
     /**
-     * Another constructor for class Time1
+     * Constructor for class Rewards
      *
      * @param id
      * @param islandUUID
      * @param time
      * @param currentBees
-     * @param buyableLines
+     * @param buyableSlots
      * @param id
      * @param world
      * @param x
@@ -145,12 +139,12 @@ public class Beehive implements Serializable {
      */
 
 
-    public Beehive(String id, String islandUUID, int time, HashMap<Integer, Bees> currentBees, LinkedList<BuyableLine> buyableLines, String world, int x, int y, int z, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
+    public Beehive(String id, String islandUUID, int time, HashMap<Integer, Bees> currentBees, LinkedList<BuyableSlot> buyableSlots, String world, int x, int y, int z, Rewards rewards, LinkedHashMap<Integer, Boost> boosts) {
         this.id = id;
         this.islandUUID = islandUUID;
         this.time = time;
         this.currentBees = currentBees;
-        this.buyableLines = buyableLines;
+        this.buyableSlots = buyableSlots;
         this.world = world;
         this.x = x;
         this.y = y;
@@ -240,23 +234,23 @@ public class Beehive implements Serializable {
     }
 
     /**
-     * This is a getter which get the buyableLines
+     * This is a getter which get the buyableSlots
      *
-     * @return buyableLines - the buyableLines to be get
+     * @return buyableSlots - the buyableSlots to be get
      */
 
-    public LinkedList<BuyableLine> getBuyableLines() {
-        return buyableLines;
+    public LinkedList<BuyableSlot> getBuyableLines() {
+        return buyableSlots;
     }
 
     /**
-     * This is a setter which set the buyableLines
+     * This is a setter which set the buyableSlots
      *
-     * @param buyableLines - the buyableLines to be set
+     * @param buyableSlots - the buyableSlots to be set
      */
 
-    public void setBuyableLines(LinkedList<BuyableLine> buyableLines) {
-        this.buyableLines = buyableLines;
+    public void setBuyableLines(LinkedList<BuyableSlot> buyableSlots) {
+        this.buyableSlots = buyableSlots;
     }
 
     /**
@@ -405,7 +399,7 @@ public class Beehive implements Serializable {
      * @return hologram - the hologram to be get
      */
 
-    public Hologram getHologram() {
+    public  Hologram getHologram() {
         return hologram;
     }
 
@@ -438,7 +432,7 @@ public class Beehive implements Serializable {
 
     public void openBeehiveInventory(Configuration configuration, HypingBees hypingBees, Player player) {
 
-        NamedInventory namedInventory = this.findClosestAboveStream(hypingBees.getBeehiveManager()
+        NamedInventory namedInventory = hypingBees.getBeehiveManager().findClosestNamedInventory(hypingBees.getBeehiveManager()
                 .getNamedInventoryList(), this.time);
 
         String inventoryName = "";
@@ -466,14 +460,14 @@ public class Beehive implements Serializable {
         this.addExcludedSlots(configuration, inventory);
         this.addBeesOnInventory(inventory);
 
-        for (BuyableLine buyableLine : this.buyableLines) {
-            inventory.setItem(buyableLine.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
+        for (BuyableSlot buyableSlot : this.buyableSlots) {
+            inventory.setItem(buyableSlot.getSlot(), hypingBees.getBuyableManager().getBuyableItemStack());
         }
 
         inventory.setItem(configuration.getRewardSlot(), configuration.getRewardsItemStack());
 
         for (int i : configuration.getProgressSlots()) {
-            inventory.setItem(i, new ItemBuilder(configuration.getProgressType()).setName(this.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState())).setLore(configuration.getProgressLore()).toItemStack());
+            inventory.setItem(i, new ItemBuilder(configuration.getProgressType()).setName(ProgressBar.progressBar(configuration, this.time, configuration.getCycleTime(), configuration.getProgressState())).setLore(configuration.getProgressLore()).toItemStack());
         }
 
         if (this.getBoosts() != null) {
@@ -488,7 +482,10 @@ public class Beehive implements Serializable {
         for (int i = 0; i < inventory.getSize(); i++) {
             if (configuration.getExcludedInvisSlots().contains(i)) continue;
 
-            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial()).setName(configuration.getInvisName()).setCustomModelData(configuration.getInvisData()).toItemStack());
+            inventory.setItem(i, new ItemBuilder(configuration.getInvisMaterial())
+                    .setName(configuration.getInvisName())
+                    .setCustomModelData(configuration.getInvisData())
+                    .toItemStack());
         }
     }
 
@@ -498,27 +495,10 @@ public class Beehive implements Serializable {
             ItemStack itemstack = bees.toItemStack();
             inventory.setItem(slot, itemstack);
         });
-
-    }
-
-    public String progressBar(Configuration configuration, int value, int maxvalue, int size) {
-        float percentage = (float) value / maxvalue;
-        int progress = (int) (size * percentage);
-        int emptyProgress = size - progress;
-
-        String progressText = StringUtils.repeat(configuration.getProgress(), progress);
-        String emptyProgressText = StringUtils.repeat(configuration.getProgressEmpty(), emptyProgress);
-        return progressText + emptyProgressText;
     }
 
     public Location toLocation() {
         return new Location(Bukkit.getWorld(this.world), this.x, this.y, this.z);
     }
 
-    public NamedInventory findClosestAboveStream(List<NamedInventory> arr, int target) {
-        return arr.stream()
-                .filter(named -> named != null && named.getDuration() > target)
-                .min(Comparator.comparingInt(NamedInventory::getDuration)) // Optional<Integer>
-                .orElse(null); // or orElseGet(() -> null)
-    }
 }

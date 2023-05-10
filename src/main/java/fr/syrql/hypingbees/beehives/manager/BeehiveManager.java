@@ -5,7 +5,7 @@ import fr.syrql.hypingbees.beehives.data.Beehive;
 import fr.syrql.hypingbees.beehives.data.NamedInventory;
 import fr.syrql.hypingbees.beehives.data.Rewards;
 import fr.syrql.hypingbees.beehives.factory.BeehiveFactory;
-import fr.syrql.hypingbees.buyable.data.BuyableLine;
+import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -54,7 +54,7 @@ public class BeehiveManager {
         return this.currentBeehive.get(uuid);
     }
 
-    public void createBeehive(Block block, Island island, LinkedList<BuyableLine> buyableLines) {
+    public void createBeehive(Block block, Island island, LinkedList<BuyableSlot> buyableSlots) {
 
         String id = UUID.randomUUID().toString().substring(1, 6);
 
@@ -65,12 +65,19 @@ public class BeehiveManager {
                         island.getUniqueId(),
                         this.hypingBees.getConfiguration().getCycleTime(),
                         new HashMap<>(),
-                        buyableLines,
+                        buyableSlots,
                         block.getLocation(), rewards, new LinkedHashMap<>()));
 
         Beehive beehive = this.hypingBees.getProvider().get(island.getUniqueId() + "-" + id);
 
         beehive.createHologram(this.hypingBees.getConfiguration().getHologramsLine(beehive));
+    }
+
+    public NamedInventory findClosestNamedInventory(List<NamedInventory> arr, int target) {
+        return arr.stream()
+                .filter(named -> named != null && named.getDuration() > target)
+                .min(Comparator.comparingInt(NamedInventory::getDuration)) // Optional<Integer>
+                .orElse(null); // or orElseGet(() -> null)
     }
 
     public void putCurrentBeehive(UUID uuid, Beehive beehive) {

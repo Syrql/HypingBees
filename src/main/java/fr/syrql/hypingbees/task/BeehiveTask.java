@@ -55,7 +55,7 @@ public class BeehiveTask implements Runnable {
 
                 }
             }
-            // check if time is < to 0
+            // check if time is > of default cycle time
             if (time >= configuration.getCycleTime()) {
                 // get alls bees
                 beehive.getCurrentBees().forEach((integer, bees) -> {

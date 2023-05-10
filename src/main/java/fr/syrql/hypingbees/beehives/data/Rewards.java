@@ -22,7 +22,7 @@ public class Rewards {
     private List<String> commands;
 
     /**
-     * Another constructor for class Time1
+     * Constructor for class Rewards
      *
      * @param materials Materials list for waiting rewards
      * @param commands Commands list for waiting rewards

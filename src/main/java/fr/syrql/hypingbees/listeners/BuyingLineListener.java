@@ -2,7 +2,7 @@ package fr.syrql.hypingbees.listeners;
 
 import fr.syrql.hypingbees.HypingBees;
 import fr.syrql.hypingbees.beehives.data.Beehive;
-import fr.syrql.hypingbees.buyable.data.BuyableLine;
+import fr.syrql.hypingbees.buyable.data.BuyableSlot;
 import fr.syrql.hypingbees.configuration.Configuration;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -40,10 +40,10 @@ public class BuyingLineListener implements Listener {
         // Cancel event
         event.setCancelled(true);
         // Get first buyable line
-        BuyableLine buyableLine = beehive.getBuyableLines().get(0);
+        BuyableSlot buyableSlot = beehive.getBuyableLines().get(0);
         // Get current player points money and buyable line price
-        double current = Double.parseDouble(PlaceholderAPI.setPlaceholders(player, buyableLine.getPlaceholder()));
-        double price = buyableLine.getPrice();
+        double current = Double.parseDouble(PlaceholderAPI.setPlaceholders(player, buyableSlot.getPlaceholder()));
+        double price = buyableSlot.getPrice();
         // Check if player has points or not
         if (price > current) {
             player.sendMessage(this.configuration.getNoMoney());
@@ -58,7 +58,7 @@ public class BuyingLineListener implements Listener {
 
         // execute config commands
 
-        buyableLine.getCommands().forEach(command ->
+        buyableSlot.getCommands().forEach(command ->
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
                 .replace("%player%", player.getName())
                 .replace("%prices%", String.valueOf((int) price))));
