@@ -126,7 +126,6 @@ public class HypingBees extends JavaPlugin {
 
     private void registerCommands() {
         new HBeesCommand(this);
-        this.getCommand("hbees").setTabCompleter(new HBeesCommand(this));
     }
 
     public ConfigManager getConfigManager() {

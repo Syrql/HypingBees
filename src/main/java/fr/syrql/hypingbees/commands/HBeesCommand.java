@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class HBeesCommand extends ACommand implements TabCompleter {
+public class HBeesCommand extends ACommand {
 
     private final HypingBees hypingBees;
     private final Configuration configuration;
@@ -140,7 +140,7 @@ public class HBeesCommand extends ACommand implements TabCompleter {
     }
 
     @Override
-    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    public @Nullable List<String> complete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         // Send list of string for the first args
         if (args.length == 1)
             return Arrays.asList("give", "reload");

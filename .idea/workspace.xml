@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Adding doc to the entire plugin ! 🐝">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/handler/BeehiveHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/inventory/BeehiveInventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/factory/BeesFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/factory/BoostFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/factory/BuyableSlotFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/namedinventory/factory/NamedInventoryFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/namedinventory/handler/NamedInventoryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/rewards/factory/RewardsFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/NamedInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/namedinventory/data/NamedInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Rewards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/rewards/data/Rewards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/factory/BeehiveFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/factory/BeehiveFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/manager/BeehiveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/manager/BeehiveManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/manager/BeesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/handler/BeesHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/manager/BoostManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/boosts/handler/BoostHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/manager/BuyableManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/buyable/handler/BuyableSlotHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/commands/HBeesCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BeehiveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BeehiveListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BuyingLineListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/RewardsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/RewardsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" afterDir="false" />
-    </list>
+    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="fix: code optimization &amp; review" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -216,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683751868322</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix: code optimization &amp; review">
+      <created>1683759415919</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1683759415919</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,6 +218,7 @@
     <MESSAGE value="Add hbees reload config.yml" />
     <MESSAGE value="Add hbees reload config.yml&#10;Add doc&#10;Remove player.closeInventory() after add boost, bees, etc.." />
     <MESSAGE value="Adding doc to the entire plugin ! " />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding doc to the entire plugin ! " />
+    <MESSAGE value="fix: code optimization &amp; review" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: code optimization &amp; review" />
   </component>
 </project>
