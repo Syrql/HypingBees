@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Adding README.md">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/data/Beehive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/configuration/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/InventoryBeehiveListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683651867908</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc">
+      <created>1683733635252</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1683733635252</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,6 +182,7 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Start adding doc" />
     <MESSAGE value="Adding README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding README.md" />
+    <MESSAGE value="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix progressBar&#10;Add update inventory&#10;Add JavaDoc" />
   </component>
 </project>

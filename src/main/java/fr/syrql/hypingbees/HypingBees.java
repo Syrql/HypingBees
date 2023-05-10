@@ -6,6 +6,7 @@ import fr.syrql.hypingbees.beehives.provider.BeehiveProvider;
 import fr.syrql.hypingbees.bees.manager.BeesManager;
 import fr.syrql.hypingbees.boosts.manager.BoostManager;
 import fr.syrql.hypingbees.buyable.manager.BuyableManager;
+import fr.syrql.hypingbees.commands.HBeesCommand;
 import fr.syrql.hypingbees.commands.HBeesGiveCommand;
 import fr.syrql.hypingbees.commands.HBoostGiveCommand;
 import fr.syrql.hypingbees.configuration.Configuration;
@@ -14,6 +15,7 @@ import fr.syrql.hypingbees.task.BeehiveInventoryTask;
 import fr.syrql.hypingbees.task.BeehiveTask;
 import fr.syrql.hypingbees.utils.config.ConfigManager;
 import fr.syrql.hypingbees.utils.files.IOUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HypingBees extends JavaPlugin {
@@ -54,6 +56,26 @@ public class HypingBees extends JavaPlugin {
         this.provider.write();
     }
 
+    public void reload() {
+
+        Bukkit.getScheduler().runTaskAsynchronously(this, () -> {
+            reloadConfig();
+            this.configManager = new ConfigManager(this);
+            configuration = new Configuration(this);
+
+            this.ioUtil = new IOUtil();
+
+            this.provider.write();
+            this.provider = new BeehiveProvider(this);
+            this.provider.read();
+
+            this.beehiveManager = new BeehiveManager(this);
+            this.buyableManager = new BuyableManager(this);
+            this.beesManager = new BeesManager(this);
+            this.boostManager = new BoostManager(this);
+        });
+    }
+
     private void registerManagers() {
         this.configManager = new ConfigManager(this);
         this.configuration = new Configuration(this);
@@ -82,6 +104,7 @@ public class HypingBees extends JavaPlugin {
     private void registerCommands() {
         new HBeesGiveCommand(this);
         new HBoostGiveCommand(this);
+        new HBeesCommand(this);
         this.getCommand("hbeesgive").setTabCompleter(new HBeesGiveCommand(this));
         this.getCommand("hboostgive").setTabCompleter(new HBoostGiveCommand(this));
     }

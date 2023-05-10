@@ -50,13 +50,13 @@ beehives:
     default-name: "Ruche"
     name:
       1:
-        time: 7
+        time: 3
         name: "Ruche 1"
       2:
         time: 5
         name: "Ruche 2"
       3:
-        time: 3
+        time: 7
         name: "Ruche 3"
     size: 54
     bees-slots:

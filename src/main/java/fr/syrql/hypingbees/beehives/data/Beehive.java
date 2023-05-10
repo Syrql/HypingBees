@@ -1,6 +1,7 @@
 package fr.syrql.hypingbees.beehives.data;
 
 import com.google.common.base.Strings;
+import com.mojang.datafixers.types.templates.Named;
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
 import fr.syrql.hypingbees.HypingBees;
@@ -437,13 +438,16 @@ public class Beehive implements Serializable {
 
     public void openBeehiveInventory(Configuration configuration, HypingBees hypingBees, Player player) {
 
-        NamedInventory namedInventory = hypingBees.getBeehiveManager().getNamedInventoryList().stream().filter(inventory -> inventory.getDuration() < this.time).max(Comparator.comparingInt(NamedInventory::getDuration)).orElse(null);
-        String inventoryName;
+        NamedInventory namedInventory = this.findClosestAboveStream(hypingBees.getBeehiveManager()
+                .getNamedInventoryList(), this.time);
 
-        if (namedInventory == null || this.time >= hypingBees.getConfiguration().getCycleTime())
-            inventoryName = hypingBees.getBeehiveManager().getInventoryName();
+        String inventoryName = "";
 
-        else inventoryName = namedInventory.getInventoryName();
+        if (this.time <= hypingBees.getConfiguration().getCycleTime()) {
+            if (namedInventory == null || this.currentBees == null)
+                inventoryName = hypingBees.getBeehiveManager().getInventoryName();
+            else inventoryName = namedInventory.getInventoryName();
+        }
 
         Inventory inventory = Bukkit.createInventory(null, hypingBees.getBeehiveManager().getInventorySize(), inventoryName);
 
@@ -507,5 +511,12 @@ public class Beehive implements Serializable {
 
     public Location toLocation() {
         return new Location(Bukkit.getWorld(this.world), this.x, this.y, this.z);
+    }
+
+    public NamedInventory findClosestAboveStream(List<NamedInventory> arr, int target) {
+        return arr.stream()
+                .filter(named -> named != null && named.getDuration() > target)
+                .min(Comparator.comparingInt(NamedInventory::getDuration)) // Optional<Integer>
+                .orElse(null); // or orElseGet(() -> null)
     }
 }
