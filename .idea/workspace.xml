@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="fix: code optimization &amp; review" />
+    <list default="true" id="e5cfaed3-4df1-4571-8652-9aadc2a34695" name="Changes" comment="fix: code optimization &amp; review">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/HypingBees.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/inventory/BeehiveInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/beehives/inventory/BeehiveInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/handler/BeesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/bees/handler/BeesHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/listeners/BoostListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/namedinventory/handler/NamedInventoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/namedinventory/handler/NamedInventoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/syrql/hypingbees/task/BeehiveInventoryTask.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683759415919</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fix: code optimization &amp; review">
+      <created>1683759664136</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1683759664136</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

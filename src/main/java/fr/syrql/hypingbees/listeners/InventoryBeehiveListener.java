@@ -52,7 +52,7 @@ public class InventoryBeehiveListener implements Listener {
             else
                 player.getInventory().addItem(placedBees.toItemStack());
             // update current beehive inventory
-            this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
+            this.beehiveInventory.addInventoryItem(this.configuration, beehive, player.getOpenInventory().getTopInventory());
             // Send player message
             player.sendMessage(configuration.getRemoveBees());
         } else {
@@ -80,7 +80,7 @@ public class InventoryBeehiveListener implements Listener {
                 // send player message
                 player.sendMessage(this.configuration.getAddBees());
                 // Update opened player inventory
-                this.beehiveInventory.addInventoryItem(this.hypingBees, this.configuration, beehive, player.getOpenInventory().getTopInventory());
+                this.beehiveInventory.addInventoryItem(this.configuration, beehive, player.getOpenInventory().getTopInventory());
                 // remove item from player inventory
                 player.getInventory().removeItem(itemBeesCopy);
                 break;

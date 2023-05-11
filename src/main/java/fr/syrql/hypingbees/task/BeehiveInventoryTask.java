@@ -29,7 +29,7 @@ public class BeehiveInventoryTask implements Runnable {
             // Check player not-null
             if (player == null) return;
             // Update inventory
-            this.beehiveInventory.addInventoryItem(this.hypingBees, this.hypingBees.getConfiguration(), beehive, player.getOpenInventory().getTopInventory());
+            this.beehiveInventory.addInventoryItem(this.hypingBees.getConfiguration(), beehive, player.getOpenInventory().getTopInventory());
 
         });
     }

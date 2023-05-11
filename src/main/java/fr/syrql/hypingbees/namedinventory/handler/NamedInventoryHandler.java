@@ -20,10 +20,11 @@ public class NamedInventoryHandler {
     }
 
     private void setupNamedInventory() {
+
+        ConfigManager config = this.hypingBees.getConfigManager();
+
         for (String key : this.hypingBees.getConfig().getConfigurationSection("beehives.inventory.name").getKeys(false)) {
             String path = "beehives.inventory.name." + key;
-
-            ConfigManager config = this.hypingBees.getConfigManager();
 
             namedInventoryList.add(new NamedInventoryFactory().create(
                     config.getInt(path + ".time"),

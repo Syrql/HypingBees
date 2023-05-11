@@ -25,10 +25,10 @@ public class BeesHandler {
 
     private void init() {
 
+        ConfigManager config = this.hypingBees.getConfigManager();
+
         for (String key : this.hypingBees.getConfig().getConfigurationSection("bees").getKeys(false)) {
             String path = "bees." + key;
-
-            ConfigManager config = this.hypingBees.getConfigManager();
 
             List<String> lore = new ArrayList<>();
             config.getStringList(path + ".lore").forEach(line -> lore.add(ChatColor.translateAlternateColorCodes('&', line)));

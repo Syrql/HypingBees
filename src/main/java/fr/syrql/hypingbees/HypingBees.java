@@ -105,7 +105,7 @@ public class HypingBees extends JavaPlugin {
         this.buyableSlotHandler = new BuyableSlotHandler(this);
         this.beesHandler = new BeesHandler(this);
         this.boostHandler = new BoostHandler(this);
-        this.beehiveInventory = new BeehiveInventory();
+        this.beehiveInventory = new BeehiveInventory(this);
     }
 
     private void registerProviders() {
@@ -114,7 +114,6 @@ public class HypingBees extends JavaPlugin {
         this.provider.read();
 
     }
-
 
     private void registerListeners() {
         this.getServer().getPluginManager().registerEvents(new BeehiveListener(this), this);
